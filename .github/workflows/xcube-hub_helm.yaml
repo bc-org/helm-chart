@@ -17,35 +17,13 @@ jobs:
       - name: get-release-tag
         id: release
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-      - name: info
-        run: |
-          echo "TAG: ${{ steps.release.outputs.tag }}"
-          echo "EVENT: ${{ github.event_name }}"
-      - name: install-cr
-        run: |
-          brew tap helm/tap
-          brew install chart-releaser
-      - name: packackge-xcube-hub-chart
-        working-directory: charts/xcube-hub
-        run: |
-          cr package
-      - name: upload-xcube-hub-chart
-        working-directory: charts/xcube-hub
-        run: |
-          cr upload --owner bc-org -r helm-chart --token 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
-      - name: index-xcube-hub-chart
-        working-directory: charts/xcube-hub
-        run: |
-          cr index --charts-repo https://github.com/bc-org/helm-chart --owner bc-org -r helm-chart --token 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
-      - name: configure-git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-      - name: push-index
-        run: |
-          git commit -a -m "released xcube-hub helm version ${{ steps.release.outputs.tag }}"
-          git push origin master
-#      - name: Run chart-releaser
+      - name: Publish Helm charts
+        uses: stefanprodan/helm-gh-pages@master
+        with:
+          owner: bc-org
+          repository: helm-chart
+          token: ${{ secrets.GITHUB_TOKEN }}#
+# - name: Run chart-releaser
 #        uses: helm/chart-releaser-action@v1.2.1
 #        with:
 #          charts_dir: charts
