@@ -30,7 +30,19 @@ spec:
       volumes:
         {{- toYaml .Values.volumes | nindent 8 }}
       initContainers:
-      {{- toYaml .Values.initContainers  | nindent 8 }}
+      {{ range .Values.prepullContainers }}
+        - name: {{ .name }}
+          {{ if .hash }}
+          image: "{{ .image }}@{{ .hash }}"
+          {{ else }}
+          image: "{{ .image }}:{{ .tag }}"
+          {{ end }}
+          command:
+            - /bin/bash
+            - -c
+            - ls
+      {{ end }}
+{{/*      {{- toYaml .Values.initContainers  | nindent 8 }}*/}}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
