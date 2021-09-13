@@ -1,34 +1,23 @@
-name: xcube-hub-helm-workflow
-
 on:
   push:
-  release:
-    types: [published]
-
-env:
-  APP_NAME: xcube-hub
-  ORG_NAME: bcdev
+    branches:
+      - main
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: get-release-tag
-        id: release
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-      - name: Publish Helm charts
-        uses: stefanprodan/helm-gh-pages@master
         with:
-          owner: bc-org
-          repository: helm-chart
-          token: ${{ secrets.GITHUB_TOKEN }}#
-# - name: Run chart-releaser
-#        uses: helm/chart-releaser-action@v1.2.1
-#        with:
-#          charts_dir: charts
-#          charts_repo_url: https://github.com/bc-org/helm-chart
-#        env:
-#          CR_TOKEN: "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"
-#          # "${{ secrets.API_TOKEN_GITHUB }}"
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.1.0
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
