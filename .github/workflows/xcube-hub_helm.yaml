@@ -1,6 +1,7 @@
 name: xcube-hub-helm-workflow
 
 on:
+  push:
   release:
     types: [published]
 
