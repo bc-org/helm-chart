@@ -9,6 +9,6 @@ entries:
     name: xcube-hub
     type: application
     urls:
-    - https://github.com/bc-org/helm-chart/releases/download/xcube-hub-1.0.0/xcube-hub-1.0.0.tgz
-    version: 1.0.0
+    - https://github.com/bc-org/helm-chart/releases/download/xcube-hub-1.0.0/xcube-hub-0.9.9.tgz
+    version: 0.9.9
 generated: "2021-09-13T14:49:02.168937567+02:00"
