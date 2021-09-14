@@ -1,18 +1,18 @@
 [![.github/workflows/release_helm.yaml](https://github.com/bc-org/helm-chart/actions/workflows/release_helm.yaml/badge.svg)](https://github.com/bc-org/helm-chart/actions/workflows/release_helm.yaml)
 [![GitHub](https://img.shields.io/badge/issue_tracking-github-blue?logo=github)](https://github.com/jupyterhub/helm-chart/issues)
 
-# helm-chart
-Helm charts for BC software that is deployed to multiple cloud services
 
-This repository stores in its [`gh-pages`
-branch](https://github.com/bc-org/helm-chart/tree/gh-pages) _packaged_ Helm
-charts for [xcube-hub](https://github.com/bcdev/xcube-hub). These packaged Helm
-charts are made available as a valid [Helm chart
+This repository provides Brockmann Consult Helm charts to be deployed in Kubernetes clusters. This repository stores
+its _packaged_ Helm chart in its [`gh-pages`branch](https://github.com/bc-org/helm-chart/tree/gh-pages). These packaged
+Helm charts are made available as a valid [Helm chart
 repository](https://helm.sh/docs/chart_repository/) on [an automatically updated
 website](https://bc-org.github.io/helm-chart/) thanks to [GitHub Pages][].
 We use [chart-releaser-action](https://github.com/helm/chart-releaser-action) to
 update the helm chart repository.
 
+Currently, this repository comprises the following software charts for:
+
+- [xcube-hub](https://github.com/bcdev/xcube-hub)
 
 ## Usage
 
