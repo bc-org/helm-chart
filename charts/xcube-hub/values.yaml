@@ -15,7 +15,7 @@ image:
 containerPort: 8080
 
 # Replaced by prepullContainers but might come back
-#initContainers: []
+initContainers: []
 prepullContainers:
   - name: pull-xcube-gen
     image: quay.io/bcdev/xcube
