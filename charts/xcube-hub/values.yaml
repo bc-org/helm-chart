@@ -2,33 +2,50 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+#############################
+## xcube-hub configuration ##
+#############################
+
+# The numbers of replicas. OBS: This chart contains a pod autoscaler. Hence, this configuration might have limited effect.
 replicaCount: 1
 
+# The api path which. Changes when major version increases
 apiPath: /api/v2/
 
+# The image configuration. You can use hash in addition to tag. Hash supersedes tag. If you don't want to use the
+# hash digest, configure itg as null to ignore it
 image:
   repository: quay.io/bcdev/xcube-hub
   pullPolicy: IfNotPresent
   tag: ""
   hash: null
 
+# Container port shoud always be 8080 except the software is started with a different port.
 containerPort: 8080
 
-# Replaced by prepullContainers but might come back
+# You can add int containers as an array
 initContainers: []
+
+# Prepull containers will be added to the initContainers section. The only purpose is tp pre-pull images
 prepullContainers:
   - name: pull-xcube-gen
     image: quay.io/bcdev/xcube
     tag: 1.0.0
     hash: null
 
+# Environment Variables
 envs: []
+
+# Standard deployment configs.
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
+
+# Add Volumes if necessary. Refer to https://kubernetes.io/docs/concepts/storage/volumes/
 volumes: []
 volumeMounts: []
 
+# Service account cnfiguration. This is needed as xcube-hub 'CRUDs' ingresses, services, jobe, and deployments
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -51,12 +68,20 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+#############################
+## Service configuration   ##
+#############################
+
 service:
   type: ClusterIP
   port: 80
 
+#############################
+## Ingress configuration   ##
+#############################
+
 ingress:
-  enabled: false
+  enabled: true
   className: ""
   annotations: {}
     # kubernetes.io/ingress.class: nginx
@@ -83,6 +108,7 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
+# Configure autoscaling.
 autoscaling:
   enabled: false
   minReplicas: 1
@@ -90,6 +116,7 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+# The following configurations allow node selection. Refer to https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
 nodeSelector: {}
 
 tolerations: []

@@ -1,3 +1,7 @@
+## Changes in Version 1.0.3
+
+- Added comments to values.yaml for better understanding
+
 ## Changes in Version 1.0.2
 
 - Version `1.0.1` removed the `initContainers` array from values.yaml as it collided with the prepullContainers 
