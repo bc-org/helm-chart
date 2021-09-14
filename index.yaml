@@ -3,12 +3,32 @@ entries:
   xcube-hub:
   - apiVersion: v2
     appVersion: "2.1"
-    created: "2021-09-13T14:49:02.168918431+02:00"
+    created: "2021-09-14T06:21:41.927361986Z"
     description: A Helm chart for Kubernetes
-    digest: 6ec9922e931b52f5f901e592362d8bd823e9ad99738c8142ed1d5267b69f354f
+    digest: fb8f88ed4cebce8a528b42063d4ef5a2b6d870c4451bb26693057f463e9c6402
+    name: xcube-hub
+    type: application
+    urls:
+    - https://github.com/bc-org/helm-chart/releases/download/xcube-hub-1.0.2/xcube-hub-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
+    appVersion: "2.1"
+    created: "2021-09-13T15:54:43.663430019Z"
+    description: A Helm chart for Kubernetes
+    digest: 65d04e0cf29b3f7157b2298a6a908918253301354d2b358ea806c8c7f02759b2
+    name: xcube-hub
+    type: application
+    urls:
+    - https://github.com/bc-org/helm-chart/releases/download/xcube-hub-1.0.1/xcube-hub-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: "2.1"
+    created: "2021-09-13T13:34:23.248038406Z"
+    description: A Helm chart for Kubernetes
+    digest: 6c9f27fad5c54d801068730c9d5ae119b6ea5883e80a7a0a4438505f8c02a52a
     name: xcube-hub
     type: application
     urls:
     - https://github.com/bc-org/helm-chart/releases/download/xcube-hub-1.0.0/xcube-hub-1.0.0.tgz
     version: 1.0.0
-generated: "2021-09-13T14:49:02.168937567+02:00"
+generated: "2021-09-13T15:26:17.308036621+02:00"
