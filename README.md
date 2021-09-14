@@ -1,8 +1,8 @@
 [![.github/workflows/release_helm.yaml](https://github.com/bc-org/helm-chart/actions/workflows/release_helm.yaml/badge.svg)](https://github.com/bc-org/helm-chart/actions/workflows/release_helm.yaml)
 [![GitHub](https://img.shields.io/badge/issue_tracking-github-blue?logo=github)](https://github.com/jupyterhub/helm-chart/issues)
 
-# helm-chart
-Helm charts for BC software that is deployed to multiple cloud services
+
+This repository provides Brockmann Consult Helm charts to be deployed in Kubernetes clusters. 
 
 This repository stores in its [`gh-pages`
 branch](https://github.com/bc-org/helm-chart/tree/gh-pages) _packaged_ Helm
