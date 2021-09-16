@@ -3,6 +3,16 @@ entries:
   xcube-hub:
   - apiVersion: v2
     appVersion: "2.1"
+    created: "2021-09-16T08:38:32.455907711Z"
+    description: A Helm chart for Kubernetes
+    digest: fc4432b69e27a6ff5ceca2da7dfba0542adf94f1cf3bff91d7cf59e759f0a85a
+    name: xcube-hub
+    type: application
+    urls:
+    - https://github.com/bc-org/helm-chart/releases/download/xcube-hub-1.0.4/xcube-hub-1.0.4.tgz
+    version: 1.0.4
+  - apiVersion: v2
+    appVersion: "2.1"
     created: "2021-09-14T07:04:44.921147397Z"
     description: A Helm chart for Kubernetes
     digest: b313359b3749ee4f0304da0603b639d20dc0d2fefd0337bca28ee5f3f533034f
