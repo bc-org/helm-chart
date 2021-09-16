@@ -67,14 +67,18 @@ spec:
             - name: http
               containerPort: {{ .Values.containerPort }}
               protocol: TCP
+          {{ if .Values.livenessReadinessProbe.enabled }}
           livenessProbe:
+            initialDelaySeconds: {{ .Values.livenessReadinessProbe.initialDelaySeconds }}
             httpGet:
               path: {{ .Values.apiPath }}
               port: http
           readinessProbe:
+            initialDelaySeconds: {{ .Values.livenessReadinessProbe.initialDelaySeconds }}
             httpGet:
               path: {{ .Values.apiPath }}
               port: http
+          {{ end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:

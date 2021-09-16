@@ -40,6 +40,9 @@ envs: []
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
+livenessReadinessProbe:
+  enabled: true
+  initialDelaySeconds: 2
 
 # Add Volumes if necessary. Refer to https://kubernetes.io/docs/concepts/storage/volumes/
 volumes: []

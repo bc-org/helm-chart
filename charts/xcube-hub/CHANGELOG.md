@@ -1,3 +1,8 @@
+## Changes in Version 1.0.4
+
+- Added a delay parameter to teh readiness probe of xcube-hub. Can be helpful on e.g. minikube if starting up xcube-hub takes too long
+- Allowed to switch off readiness and liveness probes for xcube-hub
+
 ## Changes in Version 1.0.3
 
 - Added comments to values.yaml for better understanding
