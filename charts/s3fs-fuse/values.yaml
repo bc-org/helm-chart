@@ -1,0 +1,3 @@
+# Note, the namespace provided here must already exist.
+namespace: 's3fs-fuse'
+s3fsImage: 'efrecon/s3fs'
