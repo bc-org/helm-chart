@@ -1,3 +1,6 @@
 # Note, the namespace provided here must already exist.
-namespace: 's3fs-fuse'
+
 s3fsImage: 'efrecon/s3fs'
+secretsName: 's3fs-fuse-secrets'
+volumesFuseName: 'fuse-device'
+volumesS3FsName: 'mnt-s3fs-bucket'
