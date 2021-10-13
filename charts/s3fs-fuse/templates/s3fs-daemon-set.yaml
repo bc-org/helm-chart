@@ -1,3 +1,4 @@
+{{ if .Values.create }}
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -34,3 +35,4 @@ spec:
         - name: {{ .Values.volumesS3FsName }}
           hostPath:
             path: /mnt/s3data
+{{ end }}

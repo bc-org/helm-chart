@@ -1,5 +1,5 @@
 # Note, the namespace provided here must already exist.
-
+create: true
 s3fsImage: 'efrecon/s3fs'
 secretsName: 's3fs-fuse-secrets'
 volumesFuseName: 'fuse-device'
