@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   s3fs-fuse:
   - apiVersion: v2
+    appVersion: 0.1.1
+    created: "2021-10-13T09:04:02.961319472Z"
+    description: Access to a S3 bucket via s3fs-fuse
+    digest: 0238657db1d8e96ba0cb70966a657d6c1b95869da11c6239d7a925cbe5ffc9f9
+    name: s3fs-fuse
+    type: application
+    urls:
+    - https://github.com/bc-org/helm-chart/releases/download/s3fs-fuse-0.1.1/s3fs-fuse-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     appVersion: 0.1.0
     created: "2021-10-13T08:26:47.596789654Z"
     description: Access to a S3 bucket via s3fs-fuse
