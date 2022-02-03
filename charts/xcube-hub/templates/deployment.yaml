@@ -28,49 +28,46 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
-        {{- toYaml .Values.volumes | nindent 8 }}
+        - name: {{ .Values.storeConfigMapName }}
+          configMap:
+            name: {{ .Values.storeConfigMapName }}
+        {{- toYaml .Values.extraVolumes | nindent 8 }}
       initContainers:
-        {{- $lenPrepull := int (len .Values.prepullContainers) }}
-        {{- if gt $lenPrepull 0 }}
-        {{ range .Values.prepullContainers }}
+        {{ range .Values.prepullImages }}
         - name: {{ .name }}
-          {{ if .hash }}
-          image: "{{ .image }}@{{ .hash }}"
-          {{ else }}
-          image: "{{ .image }}:{{ .tag }}"
-          {{ end }}
+          image: "{{ .repository }}:{{ .tag }}"
           command:
             - /bin/bash
             - -c
             - ls
         {{ end }}
-        {{ end }}
-        {{- $lenInit := int (len .Values.initContainers) }}
-        {{- if gt $lenInit 0 }}
         {{- toYaml .Values.initContainers  | nindent 8 }}
-        {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
 
-          {{ if .Values.image.hash }}
-          image: "{{ .Values.image.repository }}@{{ .Values.image.hash }}"
-          {{ else }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest"}}"
-          {{ end }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
 
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
+            {{- with .Values.configMaps }}
             - configMapRef:
-                name: {{ .Values.configMaps }}
+                name: {{ . }}
+            {{ end }}
+            {{- with .Values.secrets }}
             - secretRef:
-                name: {{ .Values.secrets }}
+                name: {{ . }}
+            {{ end }}
           env:
+            {{- with .Values.cubegensSecrets }}
             - name: XCUBE_HUB_CUBEGENS_SECRET
-              value: {{ .Values.cubegensSecrets }}
+              value: {{ . }}
+            {{ end }}
+            {{- with .Values.cubegensConfigMaps }}
             - name: XCUBE_HUB_CUBEGENS_MAP
-              value: {{ .Values.cubegensConfigMaps }}
+              value: {{ . }}
+            {{ end }}
             {{ toYaml .Values.envs | nindent 12 }}
           ports:
             - name: http
@@ -91,7 +88,10 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
-            {{- toYaml .Values.volumeMounts | nindent 12 }}
+            - name: {{ .Values.storeConfigMapName }}
+              mountPath: "/etc/xcube-hub"
+              readOnly: true
+            {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
