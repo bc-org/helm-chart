@@ -68,9 +68,9 @@ spec:
                 name: {{ .Values.secrets }}
           env:
             - name: XCUBE_HUB_CUBEGENS_SECRET
-              value: {{ .Values.xcubeHubCubegensSecret }}
+              value: {{ .Values.cubegensSecrets }}
             - name: XCUBE_HUB_CUBEGENS_MAP
-              value: {{ .Values.xcubeHubCubegensConfigMap }}
+              value: {{ .Values.cubegensConfigMaps }}
             {{ toYaml .Values.envs | nindent 12 }}
           ports:
             - name: http

@@ -11,8 +11,8 @@
 secrets: xcube-hub-secret
 configMaps: xcube-hub-config-map
 
-xcubeHubCubegensSecret: xcube-hub-cubegens-secret
-xcubeHubCubegensConfigMap: xcube-hub-cubegens-config-map
+cubegensSecrets: xcube-hub-cubegens-secret
+cubegensConfigMaps: xcube-hub-cubegens-config-map
 
 # The numbers of replicas. OBS: This chart contains a pod autoscaler. Hence, this configuration might have limited effect.
 replicaCount: 1
