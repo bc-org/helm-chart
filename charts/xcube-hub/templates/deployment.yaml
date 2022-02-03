@@ -31,7 +31,9 @@ spec:
         - name: {{ .Values.storeConfigMapName }}
           configMap:
             name: {{ .Values.storeConfigMapName }}
-        {{- toYaml .Values.extraVolumes | nindent 8 }}
+        {{ with .Values.extraVolumes }}
+        {{- toYaml . | nindent 8 }}
+        {{ end }}
       initContainers:
         {{ range .Values.prepullImages }}
         - name: {{ .name }}
@@ -41,7 +43,9 @@ spec:
             - -c
             - ls
         {{ end }}
-        {{- toYaml .Values.initContainers  | nindent 8 }}
+        {{ with .Values.initContainers }}
+        {{- toYaml .  | nindent 8 }}
+        {{ end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -91,7 +95,9 @@ spec:
             - name: {{ .Values.storeConfigMapName }}
               mountPath: "/etc/xcube-hub"
               readOnly: true
-            {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
+            {{ with .Values.extraVolumeMounts }}
+            {{- toYaml . | nindent 12 }}
+            {{ end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
