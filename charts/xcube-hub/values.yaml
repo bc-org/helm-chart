@@ -6,6 +6,14 @@
 ## xcube-hub configuration ##
 #############################
 
+# General xcube-hub configurations
+
+secrets: xcube-hub-secret
+configMaps: xcube-hub-config-map
+
+xcubeHubCubegensSecret: xcube-hub-cubegens-secret
+xcubeHubCubegensConfigMap: xcube-hub-cubegens-config-map
+
 # The numbers of replicas. OBS: This chart contains a pod autoscaler. Hence, this configuration might have limited effect.
 replicaCount: 1
 
@@ -20,7 +28,7 @@ image:
   tag: ""
   hash: null
 
-# Container port shoud always be 8080 except the software is started with a different port.
+# Container port should always be 8080 except the software is started with a different port.
 containerPort: 8080
 
 # You can add int containers as an array

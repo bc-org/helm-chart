@@ -61,7 +61,16 @@ spec:
           {{ end }}
 
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.configMaps }}
+            - secretRef:
+                name: {{ .Values.secrets }}
           env:
+            - name: XCUBE_HUB_CUBEGENS_SECRET
+              value: {{ .Values.xcubeHubCubegensSecret }}
+            - name: XCUBE_HUB_CUBEGENS_MAP
+              value: {{ .Values.xcubeHubCubegensConfigMap }}
             {{ toYaml .Values.envs | nindent 12 }}
           ports:
             - name: http
