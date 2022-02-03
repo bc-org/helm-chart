@@ -33,6 +33,16 @@ entries:
     version: 0.1.0
   xcube-hub:
   - apiVersion: v2
+    appVersion: "2.1"
+    created: "2022-02-03T11:18:42.188911115Z"
+    description: EDC Xcube Hub for launching Kubernetes Deployments
+    digest: 23f1b6475f46205d29d19e1a5a85f3465a3bea3df6426380ba8c131cdb862ec7
+    name: xcube-hub
+    type: application
+    urls:
+    - https://github.com/bc-org/helm-chart/releases/download/xcube-hub-1.0.9/xcube-hub-1.0.9.tgz
+    version: 1.0.9
+  - apiVersion: v2
     appVersion: 2.1.10.dev1
     created: "2022-02-03T11:12:13.389898847Z"
     description: EDC Xcube Hub for launching Kubernetes Deployments
