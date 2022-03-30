@@ -35,14 +35,6 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{ end }}
       initContainers:
-        {{ range .Values.prepullImages }}
-        - name: {{ .name }}
-          image: "{{ .repository }}:{{ .tag }}"
-          command:
-            - /bin/bash
-            - -c
-            - ls
-        {{ end }}
         {{ with .Values.initContainers }}
         {{- toYaml .  | nindent 8 }}
         {{ end }}
@@ -59,7 +51,7 @@ spec:
             - configMapRef:
                 name: {{ . }}
             {{ end }}
-            {{- with .Values.secrets }}
+            {{- with .Values.hubSecrets }}
             - secretRef:
                 name: {{ . }}
             {{ end }}

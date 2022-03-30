@@ -2,16 +2,28 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+###############################
+## image puller configuration #
+###############################
+
+puller:
+  xcubeGenImage:
+    repository: quay.io/bcdev/xcube
+    tag: latest
+  pauseImage:
+    repository: k8s.gcr.io/pause
+    tag: 3.5
+
 #############################
 ## xcube-hub configuration ##
 #############################
 
 # General xcube-hub configurations
 
-secrets: xcube-hub-secret
+hubSecrets: xcube-hub-secrets
 configMaps: null
 
-cubegensSecrets: xcube-hub-cubegens-secret
+cubegensSecrets: xcube-hub-cubegens-secrets
 cubegensConfigMaps: null
 
 # The numbers of replicas. OBS: This chart contains a pod autoscaler. Hence, this configuration might have limited effect.
@@ -33,13 +45,6 @@ containerPort: 8080
 
 # You can add int containers as an array
 initContainers: []
-
-# Prepull containers will be added to the initContainers section. The only purpose is tp pre-pull images
-prepullImages: []
-# This example will pre-pull xcube:latest
-#  - name: pull-xcube
-#    repository: quay.io/bcdev/xcube
-#    tag: latest
 
 # Environment Variables
 envs: []

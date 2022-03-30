@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: xcube-hub-puller
+  labels:
+    app: xcube-hub
+    purpose: pull-xcube-gen-images
+spec:
+  selector:
+    matchLabels:
+      name: xcube-hub-puller
+  template:
+    metadata:
+      labels:
+        name: xcube-hub-puller
+    spec:
+      tolerations:
+        # this toleration is to have the daemonset runnable on master nodes
+        # remove it if your masters can't run pods
+        - key: node-role.kubernetes.io/master
+          operator: Exists
+          effect: NoSchedule
+      initContainers:
+        - name: pull-xcube-gen
+          image: {{ .Values.puller.xcubeGenImage.repository }}:{{ .Values.puller.xcubeGenImage.tag }}
+          command:
+            - /bin/sh
+            - -c
+            - echo "Pulling complete"
+      containers:
+        - name: pause
+          image: {{ .Values.puller.pauseImage.repository }}:{{ .Values.puller.pauseImage.tag }}
