@@ -6,6 +6,7 @@
 ## image puller configuration #
 ###############################
 
+# Pulls xcube-gen docker image on all nodes
 puller:
   xcubeGenImage:
     repository: quay.io/bcdev/xcube
